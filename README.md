@@ -6,8 +6,15 @@ The project uses [Gradle](https://gradle.org/) as it's build tool. So building t
 
 ```bash
 cd Banter
-./gradle jar
+./gradlew jar
 ```
+
+For Windows it would be:
+```powershell
+cd ..location_here
+gradlew jar
+```
+
 ## Usage
 After the jar file has been built, the jar file will be stored in `build/libs`. The jar file requires 3 arguments to run:
 
