@@ -3,7 +3,7 @@ package org.example.Help;
 public class Helper {
   public static void help(){
     System.err.println("Requires 3 Arguments!");
-    String help = "java Banter <option> <file> <address>\n"
+    String help = "java -jar Banter1.0-NOGUI.jar <option> <file> <address>\n"
             + "[--send/--recv] - For sending and Receiving\n"
             + "[filename] - File to be sent/received"
             + "[ip address] - Ip Address for Destination or Source\n"

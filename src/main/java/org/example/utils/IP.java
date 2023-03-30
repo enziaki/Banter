@@ -1,20 +1,25 @@
-package org.example.util;
+package org.example.utils;
 
-import java.io.IOException;
+import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Collections;
 import java.util.Enumeration;
 
-public class IP {
-  /*
-  public static void getIP() throws IOException {
-    Enumeration interfaces = NetworkInterface.getNetworkInterfaces();
-
+public class IP{
+  public void displayInterface(NetworkInterface netint) throws SocketException{
+    Enumeration<InetAddress> inter = netint.getInetAddresses();
+    for (InetAddress iaddr : Collections.list(inter)){
+      String ipAddr = iaddr.getHostAddress();
+      System.out.println("Ip addr: " + ipAddr );
+    }
   }
 
-   */
-
-  public static void main(String[] args) throws IOException{
-    NetworkInterface nf = NetworkInterface.getByIndex(1);
-    System.out.println(nf);
+  public void printInfo() throws SocketException{
+    Enumeration<NetworkInterface> netint = NetworkInterface.getNetworkInterfaces();
+    System.out.println("Available IP addresses: ");
+    for( NetworkInterface i : Collections.list(netint)){
+      displayInterface(i);
+    }
   }
 }
