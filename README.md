@@ -31,3 +31,16 @@ java -jar Banter.x.x.jar <mode> <filename/path> <ip.addr.to.comm>
 `java -jar Banter-1.0-NOGUI.jar --send test.txt 10.11.17.18`
 
 This starts the program in Client mode and sends the file **test.txt** which is present in the same directory as the jar file, to the specified IP address 10.11.17.18.
+
+## TODO
+> Adding multithreading for bigger files
+
+> Dynamic chunks based on filesize instead of the predefined 4 * 1024
+
+> Ip address storing/display field
+
+> File size percentage display
+
+> Pause/resume support
+
+> UDP broadcasting to multiple nodes at once
