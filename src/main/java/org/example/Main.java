@@ -25,6 +25,7 @@ public class Main {
         Transmission.ConnectionSend(dataInput, dataOutput, args[2], port, args[1]);
       } else if (args[0].equals("--recv")) { // Receive block calling
         Transmission.ConnectionRecv(dataInput, dataOutput, args[2], port, args[1]);
+        System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
       } else {
         System.out.println("***Listen mode remaining!!***");
       }
