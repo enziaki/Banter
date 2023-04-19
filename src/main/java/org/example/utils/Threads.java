@@ -1,19 +1,28 @@
 package org.example.utils;
 
-import org.example.FileHandling.SendFile;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
 
-public class Threads {
-  // predefining a port
-  int port = 6969;
-
-  private DataInputStream dataInput = null;
-  private DataOutputStream dataOutput = null;
-
+import org.example.FileHandling.*;
+public class Threads implements Runnable{
   // create Send file and receive file threads and an executor
+  DataInputStream dataInput;
+  DataOutputStream dataOutput;
+  String IP, path;
+  int port;
+  public Threads(int port, DataInputStream dataInput, DataOutputStream dataOutput, String IP, String path){
+    this.port = port;
+    this.dataInput = dataInput;
+    this.dataOutput = dataOutput;
+    this.IP = IP;
+    this.path = path;
+  }
 
+  @Override
+  public void run() {
+    Transmission.ConnectionSend(dataInput, dataOutput, IP, port, path);
+  }
+  public void start(){
+    new Thread(this).start();
+  }
 }

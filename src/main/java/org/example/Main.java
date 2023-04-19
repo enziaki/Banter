@@ -31,6 +31,11 @@ public class Main {
       }
     }else if(args.length > 3){
       System.out.println("***Multithreading has not been implemented***");
+      System.out.println(args.length - 2 + " Nodes given");
+      for(int i = 2; i < args.length; i++){
+      Threads t = new Threads(port, dataInput, dataOutput, args[i], args[1]);
+      t.start();
+      }
     }
   }
 }
