@@ -15,10 +15,10 @@ public class Main {
     // defining a port
     int port = 6969;
     // menu for the program
-    if(args.length < 3){
-      System.out.println("Arguments Missing!");
-      Helper.help();
-    }else if(args.length == 3) {
+    if(args.length == 0){
+      System.out.println("Listening mode not available");
+    }
+    else if(args.length == 3) {
       if (args[0].equals("--send")) { // Send block calling
         System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
         Transmission.ConnectionSend(dataInput, dataOutput, args[2], port, args[1]);
@@ -27,7 +27,7 @@ public class Main {
         System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
       }
      }
-    else if(args.length > 3){
+    else if(args.length > 3 && args[0].equals("--send")){
       System.out.println("Starting " + (args.length - 1) + " Threads!");
       System.out.println(args.length - 1 + " Nodes given");
       for(int i = 2; i < args.length; i++){
@@ -36,7 +36,8 @@ public class Main {
       }
     }
     else{
-      System.out.println("Static listening mode not available");
+      System.out.println("Arguments Missing!");
+      Helper.help();
     }
   }
 }
