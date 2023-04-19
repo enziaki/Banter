@@ -11,7 +11,7 @@ public class Main {
   private static DataOutputStream dataOutput = null;
   private static DataInputStream dataInput = null;
 
-  public void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
     // defining a port
     int port = 6969;
     // Printing info about the file
