@@ -14,8 +14,6 @@ public class Main {
   public static void main(String[] args) throws Exception {
     // defining a port
     int port = 6969;
-    // Printing info about the file
-    System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
     // menu for the program
     if(args.length < 3){
       System.out.println("Arguments Missing!");
