@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
 import org.example.FileHandling.*;
-import org.example.Help.Helper;
+import org.example.Help.*;
 import org.example.utils.*;
 
 public class Main {
@@ -22,6 +22,7 @@ public class Main {
       Helper.help();
     }else if(args.length == 3) {
       if (args[0].equals("--send")) { // Send block calling
+        System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
         Transmission.ConnectionSend(dataInput, dataOutput, args[2], port, args[1]);
       } else if (args[0].equals("--recv")) { // Receive block calling
         Transmission.ConnectionRecv(dataInput, dataOutput, args[2], port, args[1]);
@@ -30,7 +31,7 @@ public class Main {
         System.out.println("***Listen mode remaining!!***");
       }
     }else if(args.length > 3){
-      System.out.println("***Multithreading has not been implemented***");
+      System.out.println("Starting " + (args.length - 2) + " Threads!");
       System.out.println(args.length - 2 + " Nodes given");
       for(int i = 2; i < args.length; i++){
       Threads t = new Threads(port, dataInput, dataOutput, args[i], args[1]);
