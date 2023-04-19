@@ -25,16 +25,18 @@ public class Main {
       } else if (args[0].equals("--recv")) { // Receive block calling
         Transmission.ConnectionRecv(dataInput, dataOutput, args[2], port, args[1]);
         System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
-      } else {
-        System.out.println("***Listen mode remaining!!***");
       }
-    }else if(args.length > 3){
-      System.out.println("Starting " + (args.length - 2) + " Threads!");
-      System.out.println(args.length - 2 + " Nodes given");
+     }
+    else if(args.length > 3){
+      System.out.println("Starting " + (args.length - 1) + " Threads!");
+      System.out.println(args.length - 1 + " Nodes given");
       for(int i = 2; i < args.length; i++){
       Threads t = new Threads(port, dataInput, dataOutput, args[i], args[1]);
       t.start();
       }
+    }
+    else{
+      System.out.println("Static listening mode not available");
     }
   }
 }
