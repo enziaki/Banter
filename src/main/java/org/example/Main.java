@@ -28,8 +28,8 @@ public class Main {
       }
      }
     else if(args.length > 3 && args[0].equals("--send")){
-      System.out.println("Starting " + (args.length - 1) + " Threads!");
-      System.out.println(args.length - 1 + " Nodes given");
+      System.out.println("Starting " + (args.length - 2) + " Threads!");
+      System.out.println(args.length - 2 + " Nodes given");
       for(int i = 2; i < args.length; i++){
       Threads t = new Threads(port, dataInput, dataOutput, args[i], args[1]);
       t.start();
