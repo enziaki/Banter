@@ -26,6 +26,19 @@ public class Main {
         Transmission.ConnectionRecv(dataInput, dataOutput, args[2], port, args[1]);
         System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
       }
+      else if(args[0].equals("--buffer-send")){
+        System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
+        long startTime = System.currentTimeMillis();
+        BufferTransmission.sendFile(port, args[2], args[1]);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Sent the file in " + (endTime - startTime) + " ms");
+      }
+      else if(args[0].equals("--buffer-recv")){
+        long recvStartTime = System.currentTimeMillis();
+        BufferTransmission.getFile(port);
+        long recvEndTime = System.currentTimeMillis();
+        System.out.println("Received the file in " + (recvEndTime - recvStartTime) + " ms");
+      }
      }
     else if(args.length > 3 && args[0].equals("--send")){
       System.out.println("Starting " + (args.length - 2) + " Threads!");
