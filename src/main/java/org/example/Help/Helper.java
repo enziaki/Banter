@@ -9,4 +9,9 @@ public class Helper {
             + "Ex - java -jar Banter-1.0-NOGUI.jar --send test.txt 10.11.18.20\n";
     System.err.println(help);
   }
+
+  public static void IPHelp(){
+    String IPHelp = "Invalid Address! Check for Ip Address input";
+    System.err.println(IPHelp);
+  }
 }

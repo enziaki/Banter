@@ -1,40 +1,43 @@
-package org.example.FileHandling;
+// package org.example.FileHandling;
 
-import org.example.utils.Connection;
+// import org.example.utils.Connection;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
+// import java.io.FileInputStream;
+// import java.io.InputStream;
+// import java.io.OutputStream;
+// import java.net.Socket;
+// import java.nio.file.Files;
+// import java.nio.file.StandardCopyOption;
 
-public class BufferTransmission {
+// public class BufferTransmission {
 
-  final static int BUFFER = 65536; //64 KB buffer size
+//   final static int BUFFER = 65536; //64 KB buffer size
 
-  public static void getFile(int port) throws Exception{
-    int read;
-    int totalread = 0;
-    byte[] buffer = new byte[BUFFER];
+//   public static void getFile(int port, String fileName) throws Exception{
+//     int read;
+//     int totalread = 0;
+//     byte[] buffer = new byte[BUFFER];
 
-    InputStream clInputStream = Connection.listenSocket(port).getInputStream();
-    while((read = clInputStream.read(buffer)) != -1){
-      totalread += read;
-    }
-  }
+//     InputStream clInputStream = Connection.listenSocket(port).getInputStream();
+//     while((read = clInputStream.read(buffer)) != -1){
+//       totalread += read;
+//     }
+//     Files.copy(clInputStream, fileName, StandardCopyOption.REPLACE_EXISTING);
+//   }
 
-  public static void sendFile(int port, String Ip, String filePath) throws Exception{
-    FileInputStream fileInput = new FileInputStream(filePath);
-    Socket serverSocket = Connection.sendSocket(port, Ip);
-    OutputStream sockOutStream = serverSocket.getOutputStream();
-    byte[] buffer = new byte[BUFFER];
-    int read;
-    int readtotal = 0;
-    while((read = fileInput.read(buffer)) != -1){
-      sockOutStream.write(buffer, 0, read);
-      readtotal += read;
-    }
-    sockOutStream.close();
-    fileInput.close();
-    serverSocket.close();
-  }
-}
+//   public static void sendFile(int port, String Ip, String filePath) throws Exception{
+//     FileInputStream fileInput = new FileInputStream(filePath);
+//     Socket serverSocket = Connection.sendSocket(port, Ip);
+//     OutputStream sockOutStream = serverSocket.getOutputStream();
+//     byte[] buffer = new byte[BUFFER];
+//     int read;
+//     int readtotal = 0;
+//     while((read = fileInput.read(buffer)) != -1){
+//       sockOutStream.write(buffer, 0, read);
+//       readtotal += read;
+//     }
+//     sockOutStream.close();
+//     fileInput.close();
+//     serverSocket.close();
+//   }
+// }

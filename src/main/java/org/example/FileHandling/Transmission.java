@@ -18,6 +18,7 @@ public class Transmission {
       SendFile.sendFile(path, dataOutput);
       dataInput.close();
       dataOutput.close();
+      readSocket.close(); // new addition to readSocket
 
     }catch(Exception i){i.printStackTrace();}
   }

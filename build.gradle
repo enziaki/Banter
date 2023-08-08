@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'org.example'
-version '1.4.1-BUFFER-MT-NOGUI'
+version '1.4.2-MT-VALID-IP-NOGUI'
 
 repositories {
     mavenCentral()
