@@ -50,7 +50,7 @@ public class Main {
     }
         System.out.println("Starting on " + (args.length - 2) + " Thread(s).");
         for (int i = 2; i < args.length; i++){
-          Threads sendThread  = new Threads(port, dataInput, dataOutput, args[i], args[1]);
+          Threads sendThread  = new Threads(port, dataInput, dataOutput, args[i - 1], args[1]);
           sendThread.start();
         } 
       }
