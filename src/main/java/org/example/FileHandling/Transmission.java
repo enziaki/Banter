@@ -24,7 +24,7 @@ public class Transmission {
   }
 
   // Receiving the File
- public static void ConnectionRecv(DataInputStream dataInput, DataOutputStream dataOutput, String Ip, int port, String path){
+ public static void ConnectionRecv(DataInputStream dataInput, DataOutputStream dataOutput, int port, String path){
     try (ServerSocket recvSocket = new ServerSocket(port)){
       Socket acceptRecvSocket = recvSocket.accept();
       dataInput = new DataInputStream(acceptRecvSocket.getInputStream());
