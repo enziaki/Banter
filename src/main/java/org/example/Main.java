@@ -38,19 +38,19 @@ public class Main {
 
       else if(operation == 2){
         //validate IP
-        for (int i = 2; i <= args.length; i++){
-          if(IPRegex.checkIP(args[i]) == true){
-            IPstatus = true;
-          }
-          else{
-            Helper.IPHelp();
-            IPstatus = false;
-            System.exit(1);
-          }
-    }
+      //   for (int i = 2; i <= args.length; i++){
+      //     if(IPRegex.checkIP(args[i]) == true){
+      //       IPstatus = true;
+      //     }
+      //     else{
+      //       Helper.IPHelp();
+      //       IPstatus = false;
+      //       System.exit(1);
+      //     }
+      // }
         System.out.println("Starting on " + (args.length - 2) + " Thread(s).");
         for (int i = 2; i < args.length; i++){
-          Threads sendThread  = new Threads(port, dataInput, dataOutput, args[i - 1], args[1]);
+          Threads sendThread  = new Threads(port, dataInput, dataOutput, args[i], args[1]);
           sendThread.start();
         } 
       }
