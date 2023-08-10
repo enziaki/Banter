@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import org.example.FileHandling.*;
 import org.example.Help.*;
 import org.example.utils.*;
+import org.example.GUI.*;
 
 public class Main {
   private static DataOutputStream dataOutput = null;
@@ -16,18 +17,17 @@ public class Main {
 
     // Valid IP string measure
     boolean IPstatus = true;
-    
-
     // menu that returns an int depending on the operation
     int operation = Menu.menu(args.length, args[0]);
     System.out.println("Operation " + operation);
 
     // driver code
     if(IPstatus == true){
-     
+      
       if(operation == 0){
-        Helper.help();
+        // Helper.help();
         // System.exit(1);
+        Gui.main(null);
       }
 
       else if(operation == 1){
@@ -37,17 +37,7 @@ public class Main {
       }
 
       else if(operation == 2){
-        //validate IP
-      //   for (int i = 2; i <= args.length; i++){
-      //     if(IPRegex.checkIP(args[i]) == true){
-      //       IPstatus = true;
-      //     }
-      //     else{
-      //       Helper.IPHelp();
-      //       IPstatus = false;
-      //       System.exit(1);
-      //     }
-      // }
+        // validate IP
         System.out.println("Starting on " + (args.length - 2) + " Thread(s).");
         for (int i = 2; i < args.length; i++){
           Threads sendThread  = new Threads(port, dataInput, dataOutput, args[i], args[1]);
@@ -58,9 +48,7 @@ public class Main {
         Helper.help();
       }
     }
-
-
-  }
+  } 
 }
 // else if(args[0].equals("--buffer-send")){
       //   System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
