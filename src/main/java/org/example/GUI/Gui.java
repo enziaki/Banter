@@ -15,10 +15,11 @@ import java.net.UnknownHostException;
 import javafx.concurrent.Task;
 
 import org.example.FileHandling.*;
-// import org.example.utils.*;
+import org.example.utils.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
 
 public class Gui extends Application {
     private Stage primaryStage;
@@ -88,7 +89,9 @@ public class Gui extends Application {
             }
             // call the connection send Transmission
             Transmission.ConnectionSend(dataInput, dataOutput, senderIP, port, filePath);
-
+            try{
+            System.out.println("File Sent! " + Chunks.displayNomenclature(Chunks.getSize(filePath)));
+            }catch(FileNotFoundException f){System.out.println("File missing?");}
         });
 
         VBox vbox = new VBox(10);

@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'org.example'
-version '1.5-?GUI'
+version '1.6-GUI'
 
 repositories {
     mavenCentral()
