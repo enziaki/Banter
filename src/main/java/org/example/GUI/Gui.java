@@ -14,9 +14,21 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import javafx.concurrent.Task;
 
+import org.example.FileHandling.*;
+// import org.example.utils.*;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+
 public class Gui extends Application {
     private Stage primaryStage;
     private ProgressBar progressBar;
+
+    private static DataInputStream dataInput = null;
+    private static DataOutputStream dataOutput = null;
+    private static final int port = 6969;
+    public String filePath = null;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -40,6 +52,7 @@ public class Gui extends Application {
             File selectedFile = fileChooser.showOpenDialog(primaryStage);
             if (selectedFile != null) {
                 fileTextArea.setText(selectedFile.getAbsolutePath());
+                filePath = selectedFile.getAbsolutePath();
             }
         });
 
@@ -53,10 +66,12 @@ public class Gui extends Application {
         fileTextArea.setOnDragDropped(event -> {
             Dragboard db = event.getDragboard();
             boolean success = false;
+            
             if (db.hasFiles()) {
                 File file = db.getFiles().get(0);
                 fileTextArea.setText(file.getAbsolutePath());
                 success = true;
+                filePath = file.getAbsolutePath();
             }
             event.setDropCompleted(success);
             event.consume();
@@ -71,6 +86,9 @@ public class Gui extends Application {
             } else {
                 showAlert("Invalid IP Address", "Please enter a valid sender IP address.");
             }
+            // call the connection send Transmission
+            Transmission.ConnectionSend(dataInput, dataOutput, senderIP, port, filePath);
+
         });
 
         VBox vbox = new VBox(10);
@@ -78,7 +96,7 @@ public class Gui extends Application {
         vbox.getChildren().addAll(
                 new Label("System IP Address:"),
                 systemIPTextField,
-                new Label("Sender IP Address:"),
+                new Label("Destination IP Address:"),
                 senderIPTextField,
                 new Label("Select a File:"),
                 new HBox(fileTextArea),
