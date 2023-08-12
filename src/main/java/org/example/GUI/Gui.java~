@@ -38,7 +38,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setTitle("Banter 1.6-alpha");
+        primaryStage.setTitle("Banter 1.5-alpha");
 
         String systemIPAddress = getSystemIPAddress();
 
