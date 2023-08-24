@@ -6,38 +6,60 @@ import java.io.DataOutputStream;
 import org.example.FileHandling.*;
 import org.example.Help.*;
 import org.example.utils.*;
+import org.example.GUI.*;
 
 public class Main {
   private static DataOutputStream dataOutput = null;
   private static DataInputStream dataInput = null;
+  private static final int port = 6969;
 
-  public static void main(String[] args) throws Exception {
-    // defining a port
-    int port = 6969;
-    // menu for the program
-    if(args.length == 0){
-      System.out.println("Listening mode not available");
-    }
-    else if(args.length == 3) {
-      if (args[0].equals("--send")) { // Send block calling
-        System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
-        Transmission.ConnectionSend(dataInput, dataOutput, args[2], port, args[1]);
-      } else if (args[0].equals("--recv")) { // Receive block calling
-        Transmission.ConnectionRecv(dataInput, dataOutput, args[2], port, args[1]);
+  public static void main(String[] args) throws Exception{
+
+    // Valid IP string measure
+    boolean IPstatus = true;
+    // menu that returns an int depending on the operation
+    int operation = Menu.menu(args.length, args[0]);
+    System.out.println("Operation " + operation);
+
+    // driver code
+    if(IPstatus == true){
+      
+      if(operation == 0){
+        // Helper.help();
+        // System.exit(1);
+        Gui.main(null);
+      }
+
+      else if(operation == 1){
+        System.out.println("Listening on " + port + " ....");
+        Transmission.ConnectionRecv(dataInput, dataOutput, port, args[1]);
         System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
       }
-     }
-    else if(args.length > 3 && args[0].equals("--send")){
-      System.out.println("Starting " + (args.length - 1) + " Threads!");
-      System.out.println(args.length - 1 + " Nodes given");
-      for(int i = 2; i < args.length; i++){
-      Threads t = new Threads(port, dataInput, dataOutput, args[i], args[1]);
-      t.start();
+
+      else if(operation == 2){
+        // validate IP
+        System.out.println("Starting on " + (args.length - 2) + " Thread(s).");
+        for (int i = 2; i < args.length; i++){
+          Threads sendThread  = new Threads(port, dataInput, dataOutput, args[i], args[1]);
+          sendThread.start();
+        } 
+      }
+      else{
+        Helper.help();
       }
     }
-    else{
-      System.out.println("Arguments Missing!");
-      Helper.help();
-    }
-  }
+  } 
 }
+// else if(args[0].equals("--buffer-send")){
+      //   System.out.println(Chunks.displayNomenclature(Chunks.getSize(args[1])));
+      //   long startTime = System.currentTimeMillis();
+      //   // BufferTransmission.sendFile(port, args[2], args[1]);
+      //   long endTime = System.currentTimeMillis();
+      //   System.out.println("Sent the file in " + (endTime - startTime) + " ms");
+      // }
+      // else if(args[0].equals("--buffer-recv")){
+      //   long recvStartTime = System.currentTimeMillis();
+      //   // BufferTransmission.getFile(port);
+      //   long recvEndTime = System.currentTimeMillis();
+      //   System.out.println("Received the file in " + (recvEndTime - recvStartTime) + " ms");
+      // }

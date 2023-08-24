@@ -18,12 +18,13 @@ public class Transmission {
       SendFile.sendFile(path, dataOutput);
       dataInput.close();
       dataOutput.close();
+      readSocket.close(); // new addition to readSocket
 
     }catch(Exception i){i.printStackTrace();}
   }
 
   // Receiving the File
- public static void ConnectionRecv(DataInputStream dataInput, DataOutputStream dataOutput, String Ip, int port, String path){
+ public static void ConnectionRecv(DataInputStream dataInput, DataOutputStream dataOutput, int port, String path){
     try (ServerSocket recvSocket = new ServerSocket(port)){
       Socket acceptRecvSocket = recvSocket.accept();
       dataInput = new DataInputStream(acceptRecvSocket.getInputStream());
